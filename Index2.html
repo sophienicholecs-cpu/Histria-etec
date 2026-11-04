@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Estudos e Simulado - História 2º Ano | ETE República</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#172554',
+                        },
+                        amberGold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(100, 116, 139, 0.3);
+            border-radius: 4px;
+        }
+        .quiz-option {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .quiz-option.selected {
+            border-color: #3b82f6 !important;
+            background-color: #eff6ff !important;
+        }
+        .dark .quiz-option.selected {
+            background-color: rgba(30, 58, 138, 0.3) !important;
+            border-color: #60a5fa !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased min-h-screen flex flex-col transition-colors duration-200">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Brand Title -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-900 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                        <i class="fa-solid fa-landmark text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-amberGold-600 dark:text-amberGold-400 block">FAETEC • ETE República</span>
+                        <h1 class="text-base font-bold text-slate-900 dark:text-white leading-tight">História • Prof. Rafael Queiroz</h1>
+                    </div>
+                </div>
+
+                <!-- Action Controls & Tabs -->
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <!-- Navigation Tabs -->
+                    <div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl text-xs sm:text-sm font-semibold">
+                        <button onclick="switchTab('resumo')" id="tab-resumo" class="px-3 sm:px-4 py-1.5 rounded-lg transition duration-200 bg-white dark:bg-slate-700 text-brand-900 dark:text-white shadow-sm flex items-center gap-2">
+                            <i class="fa-solid fa-book-open text-brand-500"></i>
+                            <span class="hidden sm:inline">Guia Teórico</span>
+                            <span class="sm:hidden">Guia</span>
+                        </button>
+                        <button onclick="switchTab('simulado')" id="tab-simulado" class="px-3 sm:px-4 py-1.5 rounded-lg transition duration-200 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-pen-to-square text-amberGold-500"></i>
+                            <span class="hidden sm:inline">Simulado Interativo</span>
+                            <span class="sm:hidden">Simulado</span>
+                        </button>
+                    </div>
+
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Alternar Tema">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:block text-amberGold-400"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+        <!-- Banner Informátivo da Prova -->
+        <div class="mb-8 p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-brand-900 via-brand-800 to-slate-900 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute right-0 top-0 -mr-12 -mt-12 w-48 h-48 rounded-full bg-brand-500/10 blur-2xl pointer-events-none"></div>
+            <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amberGold-500/20 text-amberGold-400 border border-amberGold-500/30 mb-2">
+                        <i class="fa-solid fa-graduation-cap"></i> Revisão de Conteúdo • 3º Trimestre
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-bold font-serif">Guia Completo de Preparação para a Prova</h2>
+                    <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
+                        Da Revolução Industrial aos Movimentos Operários, passando pela Vinda da Família Real, Primeiro e Segundo Reinado até a Proclamação da República.
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 self-start md:self-auto">
+                    <button onclick="scrollToTop()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-xs font-semibold rounded-xl backdrop-blur border border-white/20 transition flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-up"></i> Topo
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SEÇÃO 1: GUIA TEÓRICO COMPLETO             -->
+        <!-- ========================================== -->
+        <section id="section-resumo" class="space-y-8">
+            
+            <!-- Index quick navigation -->
+            <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-list-ol text-brand-500"></i> Navegação Rápida por Módulos
+                </h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-xs font-semibold">
+                    <a href="#m1" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/60 hover:bg-brand-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-800 transition text-center truncate border border-slate-100 dark:border-slate-800">1. Rev. Industrial</a>
+                    <a href="#m2" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/60 hover:bg-brand-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-800 transition text-center truncate border border-slate-100 dark:border-slate-800">2. 1º Reinado & Indep.</a>
+                    <a href="#m3" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/60 hover:bg-brand-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-800 transition text-center truncate border border-slate-100 dark:border-slate-800">3. Golpe da Maioridade</a>
+                    <a href="#m4" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/60 hover:bg-brand-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-800 transition text-center truncate border border-slate-100 dark:border-slate-800">4. Café & Modernização</a>
+                    <a href="#m5" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/60 hover:bg-brand-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-800 transition text-center truncate border border-slate-100 dark:border-slate-800">5. Guerra do Paraguai</a>
+                    <a href="#m6" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/60 hover:bg-brand-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-800 transition text-center truncate border border-slate-100 dark:border-slate-800">6. Queda da Monarquia</a>
+                </div>
+            </div>
+
+            <!-- MÓDULO 1 -->
+            <div id="m1" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm scroll-mt-24 transition">
+                <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm">01</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-serif">Revolução Industrial & Movimentos Operários</h3>
+                        <p class="text-xs text-slate-500">Pioneirismo Inglês, Ludismo, Cartismo e Doutrinas Socialistas</p>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-indigo-900 dark:text-indigo-300 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-industry text-indigo-500"></i> Pioneirismo Inglês (c. 1760)
+                        </h4>
+                        <ul class="space-y-2 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <li><strong>Cercamentos dos Campos (Enclosures):</strong> Apropriação de terras comunais pela <em>gentry</em> rural. Os camponeses foram expulsos para as cidades, gerando a mão de obra barata e abundante (êxodo rural).</li>
+                            <li><strong>Abundância de Recursos:</strong> Jazidas de carvão mineral (combustível) e minério de ferro.</li>
+                            <li><strong>Máquina a Vapor:</strong> Aperfeiçoada por James Watt, possibilitou a substituição da força humana/animal pela força motriz mecânica nas indústrias têxteis.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-indigo-900 dark:text-indigo-300 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-users-gear text-indigo-500"></i> Sociedade Fabril & Reações
+                        </h4>
+                        <ul class="space-y-2 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <li><strong>Antagonismo Social:</strong> Consolidação da <em>Burguesia Industrial</em> (dona dos meios de produção) vs. <em>Proletariado</em> (trabalhadores assalariados com rotinas insalubres de até 16h).</li>
+                            <li><strong>Ludismo:</strong> Movimento radical de quebra de máquinas nas fábricas, culpando-as pelo desemprego.</li>
+                            <li><strong>Cartismo:</strong> Movimento político operário que redigiu a <em>Carta do Povo</em> exigindo sufrágio universal masculino e direitos políticos.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Highlight Box: Socialismo -->
+                <div class="mt-4 p-4 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/40 text-xs sm:text-sm">
+                    <h5 class="font-bold text-indigo-950 dark:text-indigo-300 mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-brain text-indigo-500"></i> Pensadores Socialistas e Anarquistas:
+                    </h5>
+                    <p class="text-slate-700 dark:text-slate-300">
+                        <strong>Socialismo Utópico (Robert Owen & Charles Fourier):</strong> Propunham comunidades cooperativas harmônicas sem romper violentamente com o capitalismo.<br>
+                        <strong>Socialismo Científico (Karl Marx & Friedrich Engels):</strong> Defendiam a luta de classes como motor da história e a tomada do poder pelo Proletariado.<br>
+                        <strong>Anarquismo (Mikhail Bakunin):</strong> Defendia a abolição imediata do Estado e de qualquer autoridade hierárquica.
+                    </p>
+                </div>
+            </div>
+
+            <!-- MÓDULO 2 -->
+            <div id="m2" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm scroll-mt-24 transition">
+                <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold flex items-center justify-center text-sm">02</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-serif">Vinda da Corte, Independência e 1º Reinado</h3>
+                        <p class="text-xs text-slate-500">De 1808 à Constituição Outorgada de 1824 e a Abdicação de D. Pedro I</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-ship text-blue-500"></i> Corte no Brasil & Independência
+                        </h4>
+                        <ul class="space-y-2 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <li><strong>Abertura dos Portos (1808):</strong> Fim do pacto colonial. Favoreceu diretamente os comerciantes ingleses e rompeu o monopólio mercantil português.</li>
+                            <li><strong>Revolução do Porto (1820):</strong> Movimento liberal em Portugal que exigiu o retorno de D. João VI e tentou recolonizar o Brasil.</li>
+                            <li><strong>Independência (1822):</strong> Fruto de aliança entre D. Pedro I e as elites latifundiárias escravistas, garantindo a manutenção da Monarquia e da estrutura agrária tradicional.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-crown text-blue-500"></i> 1º Reinado e Constituição de 1824
+                        </h4>
+                        <ul class="space-y-2 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <li><strong>Outorga da Constituição (1824):</strong> Imposta por D. Pedro I após dissolver a Constituinte. Criou o exclusivo <strong>Poder Moderador</strong>, que dava autoridade absoluta ao Imperador sobre os demais poderes.</li>
+                            <li><strong>Voto Censitário:</strong> Direitos políticos restritos aos homens livres de elevada renda comprovada.</li>
+                            <li><strong>Abdicação (1831):</strong> O autoritarismo de D. Pedro I, a crise econômica e os atritos crescentes com liberais e elites maçônicas o forçaram a abdicar em favor de seu filho de apenas 5 anos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO 3 -->
+            <div id="m3" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm scroll-mt-24 transition">
+                <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold flex items-center justify-center text-sm">03</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-serif">Golpe da Maioridade e o Segundo Reinado</h3>
+                        <p class="text-xs text-slate-500">Estabilização Política: Luzias, Saquaremas e a Conciliação</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-emerald-900 dark:text-emerald-300 mb-1">Golpe da Maioridade (1840)</h4>
+                        <p class="text-slate-600 dark:text-slate-300">
+                            Articulado pelos Liberais para antecipar a coroação de D. Pedro II aos 14 anos, encerrando a grave instabilidade social do Período Regencial.
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-emerald-900 dark:text-emerald-300 mb-1">Liberais vs. Conservadores</h4>
+                        <p class="text-slate-600 dark:text-slate-300">
+                            <strong>Liberais (Luzias):</strong> Maior autonomia provincial.<br>
+                            <strong>Conservadores (Saquaremas):</strong> Defendiam a centralização. Ambos representavam latifundiários escravistas.
+                        </p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-emerald-900 dark:text-emerald-300 mb-1">Política da Conciliação</h4>
+                        <p class="text-slate-600 dark:text-slate-300">
+                            Fase na década de 1850 em que conservadores e liberais alternavam no gabinete ministerial, acomodando os interesses das elites oligárquicas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO 4 -->
+            <div id="m4" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm scroll-mt-24 transition">
+                <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold flex items-center justify-center text-sm">04</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-serif">Café, Ferrovias e Modernização Econômica</h3>
+                        <p class="text-xs text-slate-500">Vale do Paraíba, Oeste Paulista e a Lei Eusébio de Queirós</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-amber-900 dark:text-amber-300 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-mug-hot text-amber-500"></i> Cafeicultura: Regiões Produtoras
+                        </h4>
+                        <ul class="space-y-2 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <li><strong>Vale do Paraíba:</strong> Produção tradicional, baseada no latifúndio monocultor com uso intensivo e irrestrito de mão de obra escravizada.</li>
+                            <li><strong>Oeste Paulista:</strong> Cafeicultura dinâmica e inovadora (terra roxa). Investiu na modernização técnica, construção de ferrovias e na substituição do trabalho escravo pelo imigrante livre.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-amber-900 dark:text-amber-300 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-train text-amber-500"></i> Lei Eusébio de Queirós (1850)
+                        </h4>
+                        <ul class="space-y-2 text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                            <li><strong>Fim do Tráfico Transatlântico:</strong> Proibiu a entrada de novos escravizados vindo da África no Brasil.</li>
+                            <li><strong>Reinvestimento de Capitais:</strong> Os recursos financeiros antes concentrados no tráfico de escravizados migraram para ferrovias, navegação, comércio e serviços urbanos (modernização econômica).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO 5 -->
+            <div id="m5" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm scroll-mt-24 transition">
+                <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-600 dark:text-rose-400 font-bold flex items-center justify-center text-sm">05</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-serif">Guerra do Paraguai (1864–1870)</h3>
+                        <p class="text-xs text-slate-500">Conflito Platino, Tríplice Aliança e Fortalecimento do Exército</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-rose-900 dark:text-rose-300 mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-rose-500"></i> Contexto & Tríplice Aliança
+                        </h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                            Disputas de poder na Bacia do Prata (estratégica para a navegação livre). A intervenção militar do Brasil no Uruguai motivou a reação de Solano López (Paraguai). Brasil, Argentina e Uruguai uniram-se na <strong>Tríplice Aliança</strong>.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-rose-900 dark:text-rose-300 mb-1 flex items-center gap-2">
+                            <i class="fa-solid fa-person-military-rifle text-rose-500"></i> Consequências Políticas
+                        </h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                            Apesar da vitória, o conflito gerou dívidas imensas para o Brasil. O **Exército Brasileiro** saiu fortalecido institucionalmente, politizado e abolicionista, passando a criticar publicamente a Monarquia e a exigir autonomia política.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MÓDULO 6 -->
+            <div id="m6" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm scroll-mt-24 transition">
+                <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
+                    <span class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold flex items-center justify-center text-sm">06</span>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-serif">Crise da Monarquia e Proclamação da República</h3>
+                        <p class="text-xs text-slate-500">Questão Religiosa, Maçonaria, Terceiro Reinado e 15 de Novembro de 1889</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-purple-900 dark:text-purple-300 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-church text-purple-500"></i> Questão Religiosa & Maçonaria
+                        </h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                            Conflito entre o Estado Imperial e a Igreja Católica após a prisão dos bispos D. Vital e D. Macedo Costa por cumprirem ordens papais de afastar maçons de irmandades religiosas. A Maçonaria funcionou como espaço de difusão de ideias anticlericais e republicanas.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800/80">
+                        <h4 class="font-bold text-purple-900 dark:text-purple-300 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-flag text-purple-500"></i> O Fim do Império (1889)
+                        </h4>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                            <strong>Resistência ao Terceiro Reinado:</strong> Receio quanto à sucessão da Princesa Isabel (devido ao seu forte catolicismo e a impopularidade de seu marido, Conde d'Eu).<br>
+                            <strong>Rompimento da Elite Escravista:</strong> Com a <em>Lei Áurea (1888)</em>, os fazendeiros retiraram o apoio à Monarquia. Em <strong>15 de novembro de 1889</strong>, o Exército declarou a República.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to action button to quiz -->
+            <div class="text-center py-6">
+                <button onclick="switchTab('simulado')" class="px-8 py-3.5 bg-gradient-to-r from-brand-900 to-brand-700 hover:from-brand-800 hover:to-brand-600 text-white font-bold rounded-xl shadow-lg shadow-brand-500/20 text-sm transition transform hover:-translate-y-0.5 inline-flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-amberGold-400 text-base"></i>
+                    Ir para o Simulado Interativo (10 Questões)
+                </button>
+            </div>
+
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SEÇÃO 2: SIMULADO INTERATIVO DE FIXAÇÃO    -->
+        <!-- ========================================== -->
+        <section id="section-simulado" class="hidden space-y-6">
+            
+            <!-- Instructions Header -->
+            <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-amberGold-500"></i> Simulado Prático de História
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-0.5">
+                        Responda às 10 questões abaixo para testar seu conhecimento. Clique na alternativa desejada.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 self-end md:self-auto">
+                    <button onclick="resetQuiz()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-lg transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-rotate-left"></i> Limpar Seleções
+                    </button>
+                    <button onclick="gradeQuiz()" class="px-4 py-1.5 bg-brand-800 hover:bg-brand-900 text-white text-xs font-bold rounded-lg shadow transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-check-double"></i> Verificar Respostas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Form -->
+            <form id="quiz-form" class="space-y-6">
+
+                <!-- QUESTÃO 1 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="1" data-correct="c">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+                            Questão 1 • Revolução Industrial
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        Qual fator socioeconômico foi fundamental para fornecer mão de obra barata e abundante no início da Revolução Industrial na Inglaterra?
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(1, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>A abolição total dos impostos sobre importação de produtos agrícolas.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(1, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>A imigração maciça de trabalhadores asiáticos promovida pelo Parlamento inglês.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(1, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>As Leis de Cercamento dos Campos (Enclosures), que expulsaram camponeses da terra originando o êxodo rural.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(1, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>A aliança militar estabelecida com a França após o fim da Guerra dos Cem Anos.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+                <!-- QUESTÃO 2 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="2" data-correct="b">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+                            Questão 2 • Movimentos Operários
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        O movimento operário inglês conhecido por manifestar seu descontentamento através da destruição de máquinas nas indústrias era o:
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(2, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>Cartismo.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(2, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>Ludismo.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(2, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>Socialismo Utópico.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(2, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>Anarquismo Proudhoniano.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+                <!-- QUESTÃO 3 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="3" data-correct="a">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                            Questão 3 • Período Joanino
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        A Abertura dos Portos às Nações Amigas (1808), decretada por D. João logo após a chegada da Corte ao Brasil, significou historicamente:
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(3, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>A primeira ruptura prática e irreversível com o Antigo Sistema Colonial e com o monopólio português.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(3, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>A extinção imediata de todas as taxas alfandegárias para comerciantes franceses.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(3, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>A proibição do comércio de produtos manufaturados entre o Brasil e a Inglaterra.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(3, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>A decretação do fim da escravidão no território brasileiro por pressão britânica.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+                <!-- QUESTÃO 4 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="4" data-correct="b">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                            Questão 4 • Primeiro Reinado
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        Na Constituição de 1824, outorgada por D. Pedro I, o instrumento político que concedia ao Imperador o poder de intervir e sobrepor-se aos Poderes Executivo, Legislativo e Judiciário era o:
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(4, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>Poder Absoluto Maçônico.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(4, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>Poder Moderador.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(4, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>Poder Censitário.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(4, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>Conselho Conservador da Corte.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+                <!-- QUESTÃO 5 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="5" data-correct="c">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                            Questão 5 • Segundo Reinado
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        O Golpe da Maioridade (1840) foi uma manobra política articulada principalmente por setores dos Liberais com o objetivo de:
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(5, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>Implantar imediatamente a República sob a liderança do Marechal Deodoro da Fonseca.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(5, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>Abolir a escravidão sem indenização aos proprietários rurais.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(5, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>Antecipar a ascensão de D. Pedro II ao trono para conter as revoltas regenciais e recuperar o poder político.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(5, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>Dissolver formalmente a Igreja Católica em todo o território nacional.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+                <!-- QUESTÃO 6 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="6" data-correct="b">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                            Questão 6 • Economia Imperial
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        Qual foi a principal consequência econômica direta da promulgação da Lei Eusébio de Queirós (1850)?
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(6, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>A falência imediata dos produtores de café do Oeste Paulista.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(6, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>A liberação de capitais antes aplicados no tráfico de escravizados para setores como ferrovias, navegação e serviços urbanos.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(6, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>O fim completo da escravidão em todo o território brasileiro no mesmo ano de 1850.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(6, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>A suspensão da construção de linhas férreas na Região Sudeste.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+                <!-- QUESTÃO 7 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="7" data-correct="c">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                            Questão 7 • Cafeicultura Comparada
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        Diferente do Vale do Paraíba, a cafeicultura no Oeste Paulista caracterizou-se por:
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(7, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>Uso exclusivo de técnicas ultrapassadas de queimada sem o uso de ferrovias.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(7, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>Resistência sistemática à introdução de trabalhadores imigrantes livres europeus.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(7, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>Dinamismo econômico, modernização técnica e transição progressiva para a mão de obra livre imigrante.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(7, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>Utilização exclusiva de minifúndios de subsistência voltados ao mercado interno.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+                <!-- QUESTÃO 8 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="8" data-correct="d">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
+                            Questão 8 • Guerra do Paraguai
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        Uma consequência política decisiva do fim da Guerra do Paraguai (1864–1870) para o Império Brasileiro foi:
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(8, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>A aproximação incondicional entre os bispos católicos e os oficiais do Exército.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(8, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>O cancelamento imediato de todas as dívidas externas brasileiras junto à Inglaterra.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(8, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>O enfraquecimento total do Exército e a extinção definitiva da Guarda Nacional.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(8, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>O fortalecimento institucional e a politização do Exército, que passou a criticar a Monarquia e a simpatizar com o Republicanismo.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+                <!-- QUESTÃO 9 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="9" data-correct="a">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                            Questão 9 • Crise Monárquica & Maçonaria
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        A Questão Religiosa (década de 1870) envolveu um grande conflito entre o Estado Imperial e a Igreja Católica devido a:
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(9, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>A prisão dos bispos D. Vital e D. Macedo Costa por cumprirem determinações papais contra membros da Maçonaria presentes em irmandades religiosas.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(9, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>A tentativa do Papa de impor a religião protestante como religião oficial do Império.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(9, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>A recusa da Princesa Isabel em assinar a Lei Áurea por motivos estritamente religiosos.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(9, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>A proibição de cultos católicos em todo o território urbano no Sudeste.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+                <!-- QUESTÃO 10 -->
+                <div class="quiz-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition" data-q="10" data-correct="c">
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                            Questão 10 • Proclamação da República
+                        </span>
+                        <span class="text-xs font-semibold text-slate-400">1.0 ponto</span>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-4">
+                        A Proclamação da República em 15 de novembro de 1889 resultou da convergência de diversos fatores socioeconômicos e políticos, entre os quais se destaca:
+                    </p>
+                    <div class="space-y-2 text-xs sm:text-sm">
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(10, 'a')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">A</span>
+                            <span>A revolta popular organizada exclusivamente pelos escravizados recém-libertos nas capitais.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(10, 'b')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">B</span>
+                            <span>A intervenção direta da Marinha inglesa para depor D. Pedro II.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(10, 'c')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">C</span>
+                            <span>O afastamento dos proprietários rurais escravistas pós-Abolição (1888), a aliança militar e a resistência à perspectiva de um Terceiro Reinado.</span>
+                        </div>
+                        <div class="quiz-option p-3 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer flex items-center gap-3" onclick="selectOption(10, 'd')">
+                            <span class="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">D</span>
+                            <span>O pedido espontâneo feito por D. Pedro II ao Parlamento para extinguir a Monarquia.</span>
+                        </div>
+                    </div>
+                    <div class="feedback hidden mt-4 p-3 rounded-xl text-xs sm:text-sm"></div>
+                </div>
+
+            </form>
+
+            <!-- Results Summary Panel -->
+            <div id="results-panel" class="hidden bg-white dark:bg-slate-900 rounded-2xl border-2 border-brand-900 dark:border-brand-500 p-6 shadow-xl space-y-4">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-amberGold-600 dark:text-amberGold-400 block">Resultado do Simulado</span>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Desempenho Geral</h3>
+                    </div>
+                    <div class="text-center bg-brand-900 text-white px-6 py-2.5 rounded-xl shadow-md">
+                        <span class="block text-[10px] uppercase font-semibold text-brand-200">Pontuação Final</span>
+                        <span id="score-display" class="text-2xl font-extrabold">0 / 10</span>
+                    </div>
+                </div>
+                <div id="score-feedback" class="text-sm leading-relaxed text-slate-700 dark:text-slate-300"></div>
+                <div class="flex justify-end gap-3 pt-2">
+                    <button onclick="resetQuiz()" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-xl transition">
+                        <i class="fa-solid fa-rotate-left mr-1"></i> Tentar Novamente
+                    </button>
+                    <button onclick="scrollToTop()" class="px-4 py-2 bg-brand-800 hover:bg-brand-900 text-white text-xs font-bold rounded-xl transition">
+                        <i class="fa-solid fa-arrow-up mr-1"></i> Voltar ao Topo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom Action Controls -->
+            <div class="pt-4 flex justify-center">
+                <button onclick="gradeQuiz()" class="px-8 py-3.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-xl shadow-lg shadow-brand-900/20 text-sm transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <i class="fa-solid fa-check-double text-amberGold-400 text-base"></i>
+                    Confirmar e Corrigir Respostas
+                </button>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 mt-12 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>FAETEC • Escola Técnica Estadual República (ETER) | Professor Rafael Queiroz</p>
+            <p class="mt-1 text-slate-400">Material de Apoio e Revisão de História — 2º Ano do Ensino Médio</p>
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        // State for quiz answers
+        const selectedAnswers = {};
+
+        // Correct key and explanations
+        const quizAnswers = {
+            1: { correct: 'c', exp: 'As Leis de Cercamento dos Campos privaram camponeses de suas terras comunais, forçando o êxodo rural e criando mão de obra barata para as indústrias urbanas.' },
+            2: { correct: 'b', exp: 'O Ludismo celebrizou-se pela ação direta de operários que invadiam fábricas e quebravam máquinas em protesto contra as péssimas condições de trabalho e o desemprego.' },
+            3: { correct: 'a', exp: 'A Abertura dos Portos às Nações Amigas (1808) encerrou o Pacto Colonial e rompeu o monopólio comercial exercido por Portugal.' },
+            4: { correct: 'b', exp: 'O Poder Moderador era exclusivo do Imperador (Constituição de 1824) e concedia autoridade suprema para intervir sobre o Legislativo, Executivo e Judiciário.' },
+            5: { correct: 'c', exp: 'O Golpe da Maioridade (1840) foi articulado pelos Liberais para antecipar a coroação de D. Pedro II aos 14 anos e pacificar o país após as rebeliões regenciais.' },
+            6: { correct: 'b', exp: 'A Lei Eusébio de Queirós (1850) acabou com o tráfico transatlântico de escravizados, liberando capitais que foram reinvestidos em ferrovias, comércio e serviços urbanos.' },
+            7: { correct: 'c', exp: 'O Oeste Paulista destacou-se pela terra roxa, investimentos em ferrovias e transição progressiva do trabalho escravo para o imigrante assalariado.' },
+            8: { correct: 'd', exp: 'A Guerra do Paraguai fortaleceu e politizou o Exército Brasileiro, que passou a defender autonomia política e simpatizar abertamente com o Republicanismo.' },
+            9: { correct: 'a', exp: 'A Questão Religiosa iniciou-se quando bispos cumpriram bulas papais proibindo a Maçonaria nas irmandades, resultando na prisão dos bispos pelo governo imperial.' },
+            10: { correct: 'c', exp: 'A República foi resultado do isolamento da Monarquia: afastamento dos cafeicultores escravistas pós-Abolição (1888), aliança dos militares e recusa ao Terceiro Reinado.' }
+        };
+
+        // Tab Switching
+        function switchTab(tab) {
+            const btnResumo = document.getElementById('tab-resumo');
+            const btnSimulado = document.getElementById('tab-simulado');
+            const secResumo = document.getElementById('section-resumo');
+            const secSimulado = document.getElementById('section-simulado');
+
+            if (tab === 'resumo') {
+                secResumo.classList.remove('hidden');
+                secSimulado.classList.add('hidden');
+                
+                btnResumo.className = "px-3 sm:px-4 py-1.5 rounded-lg transition duration-200 bg-white dark:bg-slate-700 text-brand-900 dark:text-white shadow-sm flex items-center gap-2";
+                btnSimulado.className = "px-3 sm:px-4 py-1.5 rounded-lg transition duration-200 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center gap-2";
+            } else {
+                secSimulado.classList.remove('hidden');
+                secResumo.classList.add('hidden');
+
+                btnSimulado.className = "px-3 sm:px-4 py-1.5 rounded-lg transition duration-200 bg-white dark:bg-slate-700 text-brand-900 dark:text-white shadow-sm flex items-center gap-2";
+                btnResumo.className = "px-3 sm:px-4 py-1.5 rounded-lg transition duration-200 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center gap-2";
+            }
+        }
+
+        // Quiz selection
+        function selectOption(qNum, optionLetter) {
+            const card = document.querySelector(`.quiz-card[data-q="${qNum}"]`);
+            const options = card.querySelectorAll('.quiz-option');
+
+            // If toggling same
+            if (selectedAnswers[qNum] === optionLetter) {
+                delete selectedAnswers[qNum];
+                options.forEach(opt => opt.classList.remove('selected'));
+                return;
+            }
+
+            selectedAnswers[qNum] = optionLetter;
+            options.forEach(opt => opt.classList.remove('selected'));
+
+            const selectedOpt = Array.from(options).find(opt => 
+                opt.textContent.trim().startsWith(optionLetter.toUpperCase())
+            );
+            if (selectedOpt) {
+                selectedOpt.classList.add('selected');
+            }
+        }
+
+        // Grade Quiz
+        function gradeQuiz() {
+            let score = 0;
+            const total = Object.keys(quizAnswers).length;
+
+            for (let q = 1; q <= total; q++) {
+                const card = document.querySelector(`.quiz-card[data-q="${q}"]`);
+                const feedback = card.querySelector('.feedback');
+                const userAns = selectedAnswers[q];
+                const correctAns = quizAnswers[q].correct;
+                const expText = quizAnswers[q].exp;
+
+                feedback.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-900', 'border-emerald-200', 'bg-rose-50', 'text-rose-900', 'border-rose-200', 'bg-amber-50', 'text-amber-900', 'border-amber-200', 'dark:bg-emerald-950/40', 'dark:text-emerald-300', 'dark:bg-rose-950/40', 'dark:text-rose-300', 'dark:bg-amber-950/40', 'dark:text-amber-300');
+
+                if (!userAns) {
+                    feedback.classList.add('bg-amber-50', 'text-amber-900', 'border', 'border-amber-200', 'dark:bg-amber-950/40', 'dark:text-amber-300');
+                    feedback.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1.5"></i> <strong>Atenção:</strong> Questão não respondida. A alternativa correta é a letra <strong>${correctAns.toUpperCase()}</strong>. ${expText}`;
+                } else if (userAns === correctAns) {
+                    score++;
+                    feedback.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-200', 'dark:bg-emerald-950/40', 'dark:text-emerald-300');
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> <strong>Resposta Correta! (${correctAns.toUpperCase()})</strong> — ${expText}`;
+                } else {
+                    feedback.classList.add('bg-rose-50', 'text-rose-900', 'border', 'border-rose-200', 'dark:bg-rose-950/40', 'dark:text-rose-300');
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-500 mr-1.5"></i> <strong>Incorreto!</strong> Você marcou (${userAns.toUpperCase()}), mas a alternativa correta é a <strong>${correctAns.toUpperCase()}</strong>. ${expText}`;
+                }
+            }
+
+            // Results Panel Display
+            const resultsPanel = document.getElementById('results-panel');
+            const scoreDisplay = document.getElementById('score-display');
+            const scoreFeedback = document.getElementById('score-feedback');
+
+            scoreDisplay.textContent = `${score} / ${total}`;
+            resultsPanel.classList.remove('hidden');
+
+            if (score === total) {
+                scoreFeedback.innerHTML = `<p class="font-bold text-emerald-600 dark:text-emerald-400"><i class="fa-solid fa-trophy mr-1"></i> Desempenho Excepcional (10/10)! Você domina todo o conteúdo cobrado pelo Professor Rafael.</p>`;
+            } else if (score >= 7) {
+                scoreFeedback.innerHTML = `<p class="font-bold text-brand-800 dark:text-brand-300"><i class="fa-solid fa-thumbs-up mr-1"></i> Ótimo trabalho (${score}/${total})! Revise as questões incorretas para fechar a nota na prova.</p>`;
+            } else if (score >= 5) {
+                scoreFeedback.innerHTML = `<p class="font-bold text-amber-600 dark:text-amber-400"><i class="fa-solid fa-book-open-reader mr-1"></i> Bom esforço (${score}/${total}). Recomendamos ler o Guia Teórico novamente antes da avaliação.</p>`;
+            } else {
+                scoreFeedback.innerHTML = `<p class="font-bold text-rose-600 dark:text-rose-400"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Atenção! Sua pontuação foi de ${score}/${total}. Revise os 6 módulos do Guia Teórico e refaça o teste.</p>`;
+            }
+
+            resultsPanel.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reset Quiz
+        function resetQuiz() {
+            for (let q in selectedAnswers) {
+                delete selectedAnswers[q];
+            }
+            document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelectorAll('.feedback').forEach(fb => fb.classList.add('hidden'));
+            document.getElementById('results-panel').classList.add('hidden');
+        }
+
+        // Scroll helper
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+</body>
+</html>
